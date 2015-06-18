@@ -76,12 +76,27 @@ class ApplyMysql():
         conn.close()
         #print 'you have just applied for mysql database at %s, your username is %s'%(self.choosed,self.username)
         print self.username+'@'+self.password+'@'+db_name+'@'+'mysql'+'@'+self.choosed+'@success'
-
-
 #        except MySQLdb.Error,e:
 #            print "apply for Mysql@%s Error %d: %s" \
 #                    % (self.choosed, e.args[0], e.args[1])
-        
+    def remove(self,hostIP):
+        conn = MySQLdb.connect(host=hostIP,user='root',passwd=self.root_password,charset='utf8')
+        cur = conn.cursor()
+        conn.select_db('mysql')
+        deleteDatabase = 'drop database %s'%(self.username+'_'+self.database)
+        deleteUser = "drop user '%s'@'%%'"%(self.username)
+        try:
+            res = cur.execute(deleteDatabase)
+            res = cur.execute(deleteUser)
+            conn.commit()
+            cur.close()
+            conn.close()
+        except:
+            conn.commit()
+            cur.close()
+            conn.close()
+            print "failed"
+
 class ApplyMongodb():
     def __init__(self,client_ip,username,password,database):
         self.client_ip=client_ip
@@ -120,8 +135,18 @@ class ApplyMongodb():
         # mydb.authenticate(self.username,self.password)
         client.close()
         # print 'you have just apply for mongo database at %s, your username is %s'%(self.choosed,self.username)
-        print self.username+'@'+db_name+'@'+'mongodb'+'@'+self.choosed+'@success'
+        print self.username+'@'+self.password+'@'+db_name+'@'+'mongodb'+'@'+self.choosed+'@success'
+    def remove(self, hostIP):
+        client = pymongo.MongoClient(hostIP,27017)
+        admindb = client['admin']
+        admindb.authenticate('root','root')
+        client.drop_database(self.username+'_'+self.database)
+        db = client[self.username+'_'+self.database]
+        db.remove_user(self.username)
+        client.close()
+        print "success"
 
+        
  
 if __name__=='__main__':
     print '###########################3'
