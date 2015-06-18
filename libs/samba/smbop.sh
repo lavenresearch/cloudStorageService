@@ -1,12 +1,15 @@
 #!/bin/bash
 
+_locate=`which $0`
+_pwd=`dirname $_locate`
 _opt=$1
 _user=$2
 _passwd=$3
-_userexpectfile=./.userexpectbin
-_smbexpectfile=./.smbexpectbin
-_defaultgroup=smbshare
+_userexpectfile=$_pwd/.userexpectbin
+_smbexpectfile=$_pwd/.smbexpectbin
+_smbcfgfile=$_pwd/smb.conf
 
+_defaultgroup=smbshare
 
 ## smb share dir path ##
 _priDir=/mnt/smbUsers
@@ -71,7 +74,7 @@ creat_smbshareDir(){
 
 cfg_samba(){
 	mv /etc/samba/smb.conf /etc/samba/smb.conf.org
-	\cp -f ./smb.conf /etc/samba/
+	\cp -f $_smbcfgfile /etc/samba/
 	service smb restart
 }
 
@@ -83,7 +86,7 @@ addtosys(){
 	useradd $_user
 	_uid=`id $_user|awk '{print $1}'|cut -d= -f2 |cut -d\( -f1`
 	usermod -d $_priDir/$_user -u $_uid $_user
-	mv /home/$_user /mnt/smbUsers/
+	mv /home/$_user $_priDir/
 	create_userexpectfile
 	/usr/bin/expect -f $_userexpectfile
 	groupadd $_defaultgroup
