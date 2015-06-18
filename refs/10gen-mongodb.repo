@@ -1,0 +1,4 @@
+[10gen]
+name=10gen Repository
+baseurl=ftp://192.168.16.101/repo/redhat/os
+gpgcheck=0

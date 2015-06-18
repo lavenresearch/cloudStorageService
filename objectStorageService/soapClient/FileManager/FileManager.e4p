@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Project SYSTEM "Project-5.1.dtd">
+<!-- eric5 project file for project FileManager -->
+<!-- Saved: 2015-04-24, 14:27:26 -->
+<!-- Copyright (C) 2015 allen lee, allen_lee922@foxmail.com -->
+<Project version="5.1">
+  <Language></Language>
+  <Hash>581d12c88925625db52e10d63b746d5fddffaec7</Hash>
+  <ProgLanguage mixed="0">Python2</ProgLanguage>
+  <ProjectType>PySide</ProjectType>
+  <Description>this is a FileManager over soap</Description>
+  <Version>0.1</Version>
+  <Author>allen lee</Author>
+  <Email>allen_lee922@foxmail.com</Email>
+  <Eol index="-1"/>
+  <Sources>
+    <Source>__init__.py</Source>
+  </Sources>
+  <Forms/>
+  <Translations/>
+  <Resources/>
+  <Interfaces/>
+  <Others>
+    <Other>FileManager.py</Other>
+    <Other>main.py</Other>
+    <Other>client.py</Other>
+    <Other>fileserver.py</Other>
+    <Other>server.py</Other>
+    <Other>simplefileserver.py</Other>
+    <Other>simulator.py</Other>
+  </Others>
+  <MainScript>main.py</MainScript>
+  <Vcs>
+    <VcsType>None</VcsType>
+  </Vcs>
+  <FiletypeAssociations>
+    <FiletypeAssociation pattern="*.idl" type="INTERFACES"/>
+    <FiletypeAssociation pattern="*.ptl" type="SOURCES"/>
+    <FiletypeAssociation pattern="*.py2" type="SOURCES"/>
+    <FiletypeAssociation pattern="*.pyw2" type="SOURCES"/>
+    <FiletypeAssociation pattern="*.qm" type="TRANSLATIONS"/>
+    <FiletypeAssociation pattern="*.qrc" type="RESOURCES"/>
+    <FiletypeAssociation pattern="*.ts" type="TRANSLATIONS"/>
+    <FiletypeAssociation pattern="*.ui" type="FORMS"/>
+    <FiletypeAssociation pattern="*.ui.h" type="FORMS"/>
+  </FiletypeAssociations>
+</Project>
